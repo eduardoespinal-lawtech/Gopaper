@@ -31,13 +31,23 @@
     details summary::-webkit-details-marker{display:none}
     details[open] .caret{transform:rotate(180deg)}
     .sr-only-focusable:focus{position:static!important;width:auto;height:auto;margin:0;clip:auto;white-space:normal;outline:2px solid #f59e0b;padding:.25rem .5rem;border-radius:.5rem;background:#fff;}
+
+    /* ===== Menu (nuevo) ===== */
+    .ulink{position:relative;padding-bottom:6px}
+    .ulink::after{
+      content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;
+      background:linear-gradient(90deg,#f59e0b,#fb923c);
+      transform:scaleX(0);transform-origin:left;transition:.25s ease
+    }
+    .ulink:hover::after,.ulink:focus-visible::after{transform:scaleX(1)}
+    .mitem{display:block;padding:.75rem 0;border-bottom:1px solid #f1f5f9}
   </style>
 </head>
 <body class="bg-slate-50 text-ink/90 antialiased selection:bg-brand-200 selection:text-ink">
   <a href="#inicio" class="sr-only sr-only-focusable absolute left-2 top-2">Saltar al contenido</a>
 
-  <!-- Header accesible -->
-  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur border-b border-black/5" role="banner">
+  <!-- ===== Header (solo rediseñado) ===== -->
+  <header id="header" class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200 transition-transform duration-300" role="banner">
     <div class="mx-auto max-w-7xl px-4 sm:px-6">
       <div class="flex items-center justify-between h-16">
         <!-- Logo -->
@@ -53,57 +63,44 @@
           </div>
         </a>
 
-        <!-- Menú desktop con overflow “Más” -->
-        <nav class="hidden md:block" aria-label="Principal">
-          <ul id="navList" class="flex items-center gap-6 font-medium">
-            <li><a class="navlink" href="#inicio">Inicio</a></li>
-            <li><a class="navlink" href="#servicios">Servicios</a></li>
-            <li><a class="navlink" href="#nosotros">Nosotros</a></li>
-            <li><a class="navlink" href="#faq">Preguntas</a></li>
-            <li><a class="navlink" href="#contacto">Contacto</a></li>
-          </ul>
-          <div class="relative inline-block">
-            <button id="moreBtn" class="hidden items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 bg-white text-sm"
-              aria-haspopup="true" aria-expanded="false" aria-controls="moreMenu">Más
-              <svg class="w-4 h-4 opacity-70" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
-            </button>
-            <div id="moreMenu" role="menu" aria-label="Más enlaces" class="absolute right-0 mt-2 w-48 rounded-xl border border-slate-200 bg-white shadow-soft hidden"></div>
-          </div>
+        <!-- Menú desktop minimal -->
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium" aria-label="Principal">
+          <a class="ulink" href="#inicio">Inicio</a>
+          <a class="ulink" href="#servicios">Servicios</a>
+          <a class="ulink" href="#nosotros">Nosotros</a>
+          <a class="ulink" href="#faq">Preguntas</a>
+          <a class="ulink" href="#contacto">Contacto</a>
         </nav>
 
-        <!-- Menú móvil accesible (off-canvas) -->
-        <div class="md:hidden">
-          <button id="mobileBtn" class="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200"
-            aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
-            <span class="text-sm font-medium">Menú</span>
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </button>
-        </div>
+        <!-- Menú móvil -->
+        <button id="menuBtn" class="md:hidden inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200"
+          aria-label="Abrir menú" aria-controls="menuPanel" aria-expanded="false">
+          <span class="text-sm font-medium">Menú</span>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
       </div>
     </div>
 
-    <!-- Panel móvil -->
-    <div id="mobileBackdrop" class="md:hidden fixed inset-0 bg-black/30 hidden" aria-hidden="true"></div>
-    <nav id="mobileMenu" class="md:hidden fixed top-0 right-0 bottom-0 w-72 max-w-[85%] translate-x-full transition-transform bg-white border-l border-slate-200 shadow-soft"
-         aria-label="Menú móvil" aria-hidden="true">
-      <div class="p-4 flex items-center justify-between border-b border-slate-200">
+    <!-- Panel móvil full-height -->
+    <div id="menuPanel" class="md:hidden fixed inset-0 bg-white translate-y-full transition-transform duration-300 ease-out" aria-label="Menú móvil" aria-hidden="true">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between border-b border-slate-200">
         <span class="font-semibold">Navegación</span>
-        <button id="mobileClose" class="p-2 rounded-lg border border-slate-200" aria-label="Cerrar menú">
+        <button id="menuClose" class="p-2 rounded-lg border border-slate-200" aria-label="Cerrar menú">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </button>
       </div>
-      <div class="p-3">
-        <a class="mnav block px-3 py-2 rounded-lg hover:bg-slate-50" href="#inicio">Inicio</a>
-        <a class="mnav block px-3 py-2 rounded-lg hover:bg-slate-50" href="#servicios">Servicios</a>
-        <a class="mnav block px-3 py-2 rounded-lg hover:bg-slate-50" href="#nosotros">Nosotros</a>
-        <a class="mnav block px-3 py-2 rounded-lg hover:bg-slate-50" href="#faq">Preguntas</a>
-        <a class="mnav block px-3 py-2 rounded-lg hover:bg-slate-50" href="#contacto">Contacto</a>
-      </div>
-    </nav>
+      <nav class="px-6 py-4 text-lg">
+        <a class="mitem" href="#inicio">Inicio</a>
+        <a class="mitem" href="#servicios">Servicios</a>
+        <a class="mitem" href="#nosotros">Nosotros</a>
+        <a class="mitem" href="#faq">Preguntas</a>
+        <a class="mitem" href="#contacto">Contacto</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- Hero (conceptual, sin cielo/papeles) -->
-  <section id="inicio" class="relative overflow-hidden">
+  <!-- ===== Hero (igual) ===== -->
+  <section id="inicio" class="relative overflow-hidden pt-16">
     <div class="absolute inset-0">
       <!-- Fondo conceptual elegante (abstracto, legal-tech) -->
       <img alt="Fondo conceptual profesional" src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1920&auto=format&fit=crop"
@@ -120,10 +117,8 @@
             Gestionamos títulos, récords de notas, actas y certificaciones con trazabilidad y entrega internacional.
           </p>
           <div class="mt-6 flex flex-wrap items-center gap-3">
-            <!-- Botón correo sin mostrar dirección -->
             <a href="mailto:info@gopaper.com.do?subject=Consulta%20GOPAPER&body=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20homologaci%C3%B3n%20y%20tr%C3%A1mites."
                class="px-5 py-3 rounded-2xl bg-ink text-white font-semibold hover:bg-ink/90">Escríbenos</a>
-            <!-- Botón WhatsApp sin número visible -->
             <a href="https://wa.me/18294424222?text=Hola%20GOPAPER%2C%20necesito%20ayuda%20con%20homologaci%C3%B3n%20y%20tr%C3%A1mites."
                target="_blank" rel="noopener"
                class="px-5 py-3 rounded-2xl bg-white border border-slate-200 font-semibold hover:border-slate-300">WhatsApp</a>
@@ -134,7 +129,7 @@
     </div>
   </section>
 
-  <!-- Qué hacemos en un vistazo -->
+  <!-- ===== Qué hacemos (igual) ===== -->
   <section class="py-12 md:py-14">
     <div class="mx-auto max-w-7xl px-4 sm:px-6">
       <div class="grid md:grid-cols-3 gap-6">
@@ -144,12 +139,12 @@
           <p class="text-sm text-ink/70 mt-1">Requisitos por país (ES/UE/EE. UU.), verificación de origen y armado de expediente.</p>
         </div>
         <div class="p-6 bg-white rounded-2xl border border-slate-100 shadow-soft">
-          <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 grid place-content-center mb-3">🛡️</div>
+          <div class="w-10 h-10 rounded-2xl bg-brand-100 text-brand-700 grid place-content-center mb-3">🛡️</div>
           <h3 class="font-semibold text-lg">Apostillas & legalizaciones</h3>
           <p class="text-sm text-ink/70 mt-1">Validación de firmas, gestión ante cancillería y control de calidad.</p>
         </div>
         <div class="p-6 bg-white rounded-2xl border border-slate-100 shadow-soft">
-          <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 grid place-content-center mb-3">🌐</div>
+          <div class="w-10 h-10 rounded-2xl bg-brand-100 text-brand-700 grid place-content-center mb-3">🌐</div>
           <h3 class="font-semibold text-lg">Traducciones oficiales</h3>
           <p class="text-sm text-ink/70 mt-1">Peritos autorizados (EN/FR/IT) con sellos exigidos por el país de destino.</p>
         </div>
@@ -157,7 +152,7 @@
     </div>
   </section>
 
-  <!-- Servicios detallados (acordeón) -->
+  <!-- ===== Servicios (igual) ===== -->
   <section id="servicios" class="py-16 md:py-20 bg-white">
     <div class="mx-auto max-w-5xl px-4 sm:px-6">
       <div class="md:flex items-end justify-between gap-6">
@@ -169,7 +164,6 @@
       </div>
 
       <div class="mt-6 space-y-3">
-        <!-- 1 -->
         <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
           <summary class="flex cursor-pointer items-center justify-between" aria-controls="d1" aria-expanded="false">
             <span class="font-semibold">Homologación académica (ES/UE/EE. UU.)</span>
@@ -185,7 +179,7 @@
             <p><b>Entregables:</b> checklist, tiempos estimados y comprobantes de gestión.</p>
           </div>
         </details>
-        <!-- 2 -->
+
         <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
           <summary class="flex cursor-pointer items-center justify-between" aria-controls="d2" aria-expanded="false">
             <span class="font-semibold">Apostilla y legalización</span>
@@ -199,7 +193,7 @@
             </ul>
           </div>
         </details>
-        <!-- 3 -->
+
         <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
           <summary class="flex cursor-pointer items-center justify-between" aria-controls="d3" aria-expanded="false">
             <span class="font-semibold">Traducciones oficiales (juradas)</span>
@@ -209,7 +203,7 @@
             <p>Inglés, francés e italiano con peritos habilitados. Formato y sellos conforme a exigencias del país receptor.</p>
           </div>
         </details>
-        <!-- 4 -->
+
         <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
           <summary class="flex cursor-pointer items-center justify-between" aria-controls="d4" aria-expanded="false">
             <span class="font-semibold">Certificaciones y actas (JCE, MESCyT, MP, etc.)</span>
@@ -222,7 +216,7 @@
             </ul>
           </div>
         </details>
-        <!-- 5 -->
+
         <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
           <summary class="flex cursor-pointer items-center justify-between" aria-controls="d5" aria-expanded="false">
             <span class="font-semibold">Programas/Pensum y constancias universitarias</span>
@@ -232,7 +226,7 @@
             <p>Obtención de programas de asignaturas, carga horaria y sellos institucionales para convalidaciones.</p>
           </div>
         </details>
-        <!-- 6 -->
+
         <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
           <summary class="flex cursor-pointer items-center justify-between" aria-controls="d6" aria-expanded="false">
             <span class="font-semibold">Trazabilidad, custodia y entrega</span>
@@ -249,7 +243,7 @@
     </div>
   </section>
 
-  <!-- Nosotros -->
+  <!-- ===== Nosotros (igual) ===== -->
   <section id="nosotros" class="py-16 md:py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6">
       <div class="grid lg:grid-cols-2 gap-10 items-start">
@@ -272,7 +266,7 @@
     </div>
   </section>
 
-  <!-- FAQ (10 items) -->
+  <!-- ===== FAQ (igual: 10) ===== -->
   <section id="faq" class="py-16 md:py-20 bg-white">
     <div class="mx-auto max-w-5xl px-4 sm:px-6">
       <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Preguntas frecuentes</h2>
@@ -325,10 +319,10 @@
     </div>
   </section>
 
-  <!-- Contacto directo (botones) -->
+  <!-- ===== Contacto (igual) ===== -->
   <section id="contacto" class="py-16 md:py-20">
     <div class="mx-auto max-w-5xl px-4 sm:px-6 text-center">
-      <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Contacto</h2>
+      <h2 class="text-2xl md:3xl font-extrabold tracking-tight">Contacto</h2>
       <p class="mt-2 text-ink/70">Elige el canal que prefieras.</p>
       <div class="mt-6 flex flex-wrap justify-center gap-3">
         <a href="mailto:info@gopaper.com.do?subject=Consulta%20GOPAPER&body=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20homologaci%C3%B3n%20y%20tr%C3%A1mites."
@@ -340,7 +334,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- ===== Footer (igual) ===== -->
   <footer class="border-t border-black/5 bg-slate-100">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 py-10">
       <div class="grid md:grid-cols-3 gap-8 text-sm">
@@ -370,93 +364,45 @@
     </div>
   </footer>
 
-  <!-- Scripts accesibilidad y menús -->
+  <!-- ===== Scripts (solo se añaden funciones del menú y auto-hide; lo demás intacto) ===== -->
   <script>
-    // año dinámico
-    document.getElementById('y').textContent = new Date().getFullYear();
+    // año dinámico (si no lo tenías)
+    const yEl=document.getElementById('y'); if(yEl) yEl.textContent = new Date().getFullYear();
 
-    // estilos base links
-    document.querySelectorAll('.navlink').forEach(a=>{
-      a.className += ' text-sm text-ink/80 hover:text-ink font-medium';
-    });
-
-    // Overflow -> “Más” para desktop
-    const navList = document.getElementById('navList');
-    const moreBtn = document.getElementById('moreBtn');
-    const moreMenu = document.getElementById('moreMenu');
-
-    function handleOverflow(){
-      if(!navList) return;
-      // reset
-      [...moreMenu.querySelectorAll('a')].forEach(a=>{
-        const li = document.createElement('li'); li.appendChild(a); navList.appendChild(li);
-      });
-      moreBtn.classList.add('hidden'); moreMenu.classList.add('hidden');
-      moreBtn.setAttribute('aria-expanded','false');
-
-      const available = navList.parentElement.clientWidth - 120;
-      let total = 0; const extras = [];
-      [...navList.children].forEach(li=>{
-        li.style.whiteSpace='nowrap';
-        total += li.getBoundingClientRect().width + 24;
-        if(total > available) extras.push(li);
-      });
-      if(extras.length){
-        moreBtn.classList.remove('hidden');
-        extras.forEach(li=>{
-          const a = li.querySelector('a'); li.remove();
-          a.className = 'block px-3 py-2 hover:bg-slate-50';
-          a.setAttribute('role','menuitem');
-          moreMenu.appendChild(a);
-        });
-      }
-    }
-    window.addEventListener('load', handleOverflow);
-    window.addEventListener('resize', handleOverflow);
-    moreBtn?.addEventListener('click', ()=>{
-      const open = moreMenu.classList.toggle('hidden');
-      moreBtn.setAttribute('aria-expanded', String(!open));
-      if(!open) moreMenu.querySelector('a')?.focus();
-    });
-    document.addEventListener('click', (e)=>{
-      if(moreMenu && !moreMenu.contains(e.target) && !moreBtn.contains(e.target)){
-        moreMenu.classList.add('hidden'); moreBtn.setAttribute('aria-expanded','false');
-      }
-    });
-
-    // Menú móvil accesible
-    const mobileBtn = document.getElementById('mobileBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileClose = document.getElementById('mobileClose');
-    const mobileBackdrop = document.getElementById('mobileBackdrop');
-
-    function openMobile(){
-      mobileMenu.style.transform = 'translateX(0)';
-      mobileMenu.setAttribute('aria-hidden','false');
-      mobileBtn.setAttribute('aria-expanded','true');
-      mobileBackdrop.classList.remove('hidden');
-      mobileMenu.querySelector('a')?.focus();
-    }
-    function closeMobile(){
-      mobileMenu.style.transform = 'translateX(100%)';
-      mobileMenu.setAttribute('aria-hidden','true');
-      mobileBtn.setAttribute('aria-expanded','false');
-      mobileBackdrop.classList.add('hidden');
-      mobileBtn.focus();
-    }
-    mobileBtn?.addEventListener('click', openMobile);
-    mobileClose?.addEventListener('click', closeMobile);
-    mobileBackdrop?.addEventListener('click', closeMobile);
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMobile(); });
-    document.querySelectorAll('.mnav').forEach(a=>a.addEventListener('click', closeMobile));
-
-    // Scroll suave
+    // Scroll suave (igual)
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', e=>{
         const id = a.getAttribute('href').slice(1);
         const el = document.getElementById(id);
         if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
       });
+    });
+
+    // Menú móvil (nuevo)
+    const menuBtn=document.getElementById('menuBtn');
+    const menuPanel=document.getElementById('menuPanel');
+    const menuClose=document.getElementById('menuClose');
+    function openMenu(){
+      menuPanel.style.transform='translateY(0)';
+      menuPanel.setAttribute('aria-hidden','false');
+      menuBtn.setAttribute('aria-expanded','true');
+    }
+    function closeMenu(){
+      menuPanel.style.transform='translateY(100%)';
+      menuPanel.setAttribute('aria-hidden','true');
+      menuBtn.setAttribute('aria-expanded','false');
+    }
+    menuBtn?.addEventListener('click',openMenu);
+    menuClose?.addEventListener('click',closeMenu);
+    menuPanel?.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeMenu(); });
+
+    // Auto-ocultar header al bajar / mostrar al subir (nuevo)
+    let lastY = 0; const header = document.getElementById('header');
+    window.addEventListener('scroll', ()=>{
+      const y = window.scrollY;
+      header.style.transform = (y > lastY && y > 80) ? 'translateY(-100%)' : 'translateY(0)';
+      lastY = y;
     });
   </script>
 </body>

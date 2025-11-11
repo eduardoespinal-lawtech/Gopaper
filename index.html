@@ -42,7 +42,7 @@
     .ulink:hover::after,.ulink:focus-visible::after{transform:scaleX(1)}
     .mitem{display:block;padding:.75rem 0;border-bottom:1px solid #f1f5f9}
 
-    /* ===== FIX menú móvil (toggle robusto + opaco) ===== */
+    /* ===== FIX menú móvil (toggle robusto + opaco + tope z) ===== */
     #menuPanel{transform:translateY(100%);opacity:0;pointer-events:none;background:#ffffff;}
     #menuPanel.is-open{transform:translateY(0);opacity:1;pointer-events:auto}
   </style>
@@ -50,7 +50,7 @@
 <body class="bg-slate-50 text-ink/90 antialiased selection:bg-brand-200 selection:text-ink">
   <a href="#inicio" class="sr-only sr-only-focusable absolute left-2 top-2">Saltar al contenido</a>
 
-  <!-- ===== Header (rediseñado y auto-oculto) ===== -->
+  <!-- ===== Header ===== -->
   <header id="header" class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200 transition-transform duration-300" role="banner">
     <div class="mx-auto max-w-7xl px-4 sm:px-6">
       <div class="flex items-center justify-between h-16">
@@ -67,7 +67,7 @@
           </div>
         </a>
 
-        <!-- Menú desktop minimal -->
+        <!-- Menú desktop -->
         <nav class="hidden md:flex items-center gap-6 text-sm font-medium" aria-label="Principal">
           <a class="ulink" href="#inicio">Inicio</a>
           <a class="ulink" href="#servicios">Servicios</a>
@@ -76,7 +76,7 @@
           <a class="ulink" href="#contacto">Contacto</a>
         </nav>
 
-        <!-- Menú móvil -->
+        <!-- Botón móvil -->
         <button id="menuBtn" class="md:hidden inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200"
           aria-label="Abrir menú" aria-controls="menuPanel" aria-expanded="false">
           <span class="text-sm font-medium">Menú</span>
@@ -85,8 +85,8 @@
       </div>
     </div>
 
-    <!-- Panel móvil full-height (opaco + sobre todo) -->
-    <div id="menuPanel" class="md:hidden fixed inset-0 z-[100] bg-white translate-y-full transition-transform duration-300 ease-out shadow-xl" aria-label="Menú móvil" aria-hidden="true">
+    <!-- Panel móvil (opaco + máximo z-index) -->
+    <div id="menuPanel" class="md:hidden fixed inset-0 z-[9999] isolate relative overflow-y-auto bg-white translate-y-full transition-transform duration-300 ease-out shadow-xl" aria-label="Menú móvil" aria-hidden="true">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between border-b border-slate-200">
         <span class="font-semibold">Navegación</span>
         <button id="menuClose" class="p-2 rounded-lg border border-slate-200" aria-label="Cerrar menú">
@@ -106,7 +106,6 @@
   <!-- ===== Hero ===== -->
   <section id="inicio" class="relative overflow-hidden pt-16">
     <div class="absolute inset-0">
-      <!-- Fondo conceptual elegante (abstracto, legal-tech) -->
       <img alt="Fondo conceptual profesional" src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1920&auto=format&fit=crop"
            class="w-full h-full object-cover opacity-80">
       <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/45 to-transparent"></div>
@@ -270,7 +269,7 @@
     </div>
   </section>
 
-  <!-- ===== FAQ (10) ===== -->
+  <!-- ===== FAQ ===== -->
   <section id="faq" class="py-16 md:py-20 bg-white">
     <div class="mx-auto max-w-5xl px-4 sm:px-6">
       <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Preguntas frecuentes</h2>
@@ -368,7 +367,7 @@
     </div>
   </footer>
 
-  <!-- ===== Scripts (menú móvil + auto-hide) ===== -->
+  <!-- ===== Scripts ===== -->
   <script>
     // año dinámico
     const yEl=document.getElementById('y'); if(yEl) yEl.textContent = new Date().getFullYear();
@@ -405,7 +404,7 @@
     menuPanel?.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
     document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeMenu(); });
 
-    // Auto-ocultar header al bajar / mostrar al subir
+    // Auto-ocultar header
     let lastY = 0; const header = document.getElementById('header');
     window.addEventListener('scroll', ()=>{
       const y = window.scrollY;

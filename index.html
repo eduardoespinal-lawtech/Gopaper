@@ -1,1 +1,424 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GOPAPER — Trámites y Homologación para Dominicanos en el Exterior</title>
+  <meta name="description" content="Facilitamos la homologación de estudios y la gestión de documentos oficiales de la República Dominicana para dominicanos en el exterior." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50:  '#fff7ed',
+              100: '#ffedd5',
+              200: '#fed7aa',
+              300: '#fdba74',
+              400: '#fb923c',
+              500: '#f59e0b', /* ámbar/naranja suave (acento del sitio) */
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e',
+              900: '#78350f'
+            },
+            ink: { DEFAULT:'#0f172a', soft:'#334155' }
+          },
+          fontFamily: { sans: ['Inter','system-ui','ui-sans-serif','Segoe UI','Roboto','Helvetica','Arial'] },
+          boxShadow: {
+            soft: '0 10px 30px -12px rgb(2 6 23 / 0.22)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root{ color-scheme: light dark; }
+    .glass { background: linear-gradient(180deg, rgba(255,255,255,.66), rgba(255,255,255,.34)); backdrop-filter: blur(8px); }
+    .logo-dot { animation: pulse 2.4s infinite; }
+    @keyframes pulse{ 0%,100%{opacity:.35; transform:scale(1)} 50%{opacity:1; transform:scale(1.12)}}
+    /* FAQ caret */
+    details summary::-webkit-details-marker{display:none}
+    details[open] .caret{transform:rotate(180deg)}
+  </style>
+</head>
+<body class="bg-slate-50 text-ink/90 antialiased selection:bg-brand-200 selection:text-ink">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-black/5">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href="#inicio" class="flex items-center gap-3 group">
+          <svg width="34" height="34" viewBox="0 0 44 44" class="text-ink/90" aria-hidden="true">
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#f59e0b"/>
+                <stop offset="1" stop-color="#fb923c"/>
+              </linearGradient>
+            </defs>
+            <rect x="2" y="2" width="40" height="40" rx="10" fill="url(#g)"/>
+            <circle class="logo-dot" cx="31" cy="13" r="3.2" fill="white" />
+          </svg>
+          <div class="leading-tight">
+            <span class="block text-lg font-extrabold tracking-tight">GOPAPER</span>
+            <span class="block text-[11px] font-medium text-ink/60 -mt-0.5">Trámites & Homologación</span>
+          </div>
+        </a>
 
+        <!-- Nav -->
+        <nav class="relative">
+          <ul id="navList" class="hidden md:flex items-center gap-6 font-medium">
+            <li><a class="navlink" href="#inicio">Inicio</a></li>
+            <li><a class="navlink" href="#servicios">Servicios</a></li>
+            <li><a class="navlink" href="#nosotros">Nosotros</a></li>
+            <li><a class="navlink" href="#faq">Preguntas</a></li>
+            <li><a class="navlink" href="#contacto">Contacto</a></li>
+          </ul>
+
+          <!-- Overflow “Más” (auto) -->
+          <div id="moreWrapper" class="relative hidden md:block">
+            <button id="moreBtn" class="hidden items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 hover:border-slate-300 bg-white text-sm">
+              Más
+              <svg class="w-4 h-4 opacity-70" viewBox="0 0 20 20" fill="currentColor"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+            </button>
+            <div id="moreMenu" class="absolute right-0 mt-2 w-48 rounded-xl border border-slate-200 bg-white shadow-soft hidden"></div>
+          </div>
+
+          <!-- Mobile -->
+          <button id="mobileBtn" class="md:hidden inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200">
+            <span class="text-sm font-medium">Menú</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </button>
+          <div id="mobileMenu" class="md:hidden absolute right-4 left-4 top-16 rounded-2xl border border-slate-200 bg-white shadow-soft p-3 hidden">
+            <a class="mnav" href="#inicio">Inicio</a>
+            <a class="mnav" href="#servicios">Servicios</a>
+            <a class="mnav" href="#nosotros">Nosotros</a>
+            <a class="mnav" href="#faq">Preguntas</a>
+            <a class="mnav" href="#contacto">Contacto</a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="inicio" class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <!-- hero background -->
+      <img alt="" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop" class="w-full h-full object-cover opacity-80">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-transparent"></div>
+    </div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="min-h-[72vh] md:min-h-[70vh] flex items-center">
+        <div class="glass rounded-3xl p-6 md:p-10 max-w-3xl shadow-soft">
+          <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-ink">
+            Valida tu <span class="text-brand-600">título</span> sin complicaciones
+          </h1>
+          <p class="mt-4 text-base md:text-lg text-ink/80">
+            Facilitamos la <strong>homologación internacional de estudios</strong> y la gestión de documentos oficiales dominicanos.
+            Más de <b>10 años</b> ayudando a dominicanos en el exterior.
+          </p>
+          <form class="mt-6 flex items-center gap-2" onsubmit="event.preventDefault();document.querySelector('#contacto').scrollIntoView({behavior:'smooth'})">
+            <input type="email" required placeholder="Tu correo para comenzar…" class="w-full md:w-80 px-4 py-3 rounded-2xl bg-white/90 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-400">
+            <button class="px-5 py-3 rounded-2xl bg-ink text-white font-semibold hover:bg-ink/90">Contáctenme</button>
+          </form>
+          <div class="mt-3 text-xs text-ink/60">Sin costos ocultos. Respuesta en 24–48 h hábiles.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beneficios -->
+  <section class="py-16 md:py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-6 bg-white rounded-2xl border border-slate-100 shadow-soft">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 grid place-content-center mb-3">⏱️</div>
+          <h3 class="font-semibold text-lg">Ahorra tiempo y dinero</h3>
+          <p class="text-sm text-ink/70 mt-1">Nos encargamos de todo el proceso de certificados, legalizaciones y entregas seguras.</p>
+        </div>
+        <div class="p-6 bg-white rounded-2xl border border-slate-100 shadow-soft">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 grid place-content-center mb-3">🛡️</div>
+          <h3 class="font-semibold text-lg">Gestión segura</h3>
+          <p class="text-sm text-ink/70 mt-1">Protocolos de seguridad, trazabilidad y comunicación clara durante cada etapa.</p>
+        </div>
+        <div class="p-6 bg-white rounded-2xl border border-slate-100 shadow-soft">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 grid place-content-center mb-3">🤝</div>
+          <h3 class="font-semibold text-lg">Experiencia comprobada</h3>
+          <p class="text-sm text-ink/70 mt-1">Red de contactos institucionales y más de una década facilitando documentos para el exterior.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section id="servicios" class="py-16 md:py-20 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="md:flex items-end justify-between gap-6">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Servicios</h2>
+          <p class="mt-2 text-ink/70 max-w-2xl">Nos ocupamos del proceso de homologación para que tus estudios dominicanos sean reconocidos oficialmente en tu país de residencia.</p>
+        </div>
+        <a href="#contacto" class="mt-4 md:mt-0 inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-200 hover:border-slate-300 bg-white text-sm font-semibold">Solicitar información →</a>
+      </div>
+
+      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- cards -->
+        <article class="p-6 rounded-2xl border border-slate-100 shadow-soft">
+          <h3 class="font-semibold">Apostilla & Legalización</h3>
+          <p class="text-sm text-ink/70 mt-1">Cumplimiento con normativas internacionales para títulos y certificados.</p>
+        </article>
+        <article class="p-6 rounded-2xl border border-slate-100 shadow-soft">
+          <h3 class="font-semibold">Traducción Oficial</h3>
+          <p class="text-sm text-ink/70 mt-1">Traducciones por profesionales certificados (si el país lo requiere).</p>
+        </article>
+        <article class="p-6 rounded-2xl border border-slate-100 shadow-soft">
+          <h3 class="font-semibold">Asesoría de Requisitos</h3>
+          <p class="text-sm text-ink/70 mt-1">Guía sobre ministerios, universidades y vías de convalidación/equivalencias.</p>
+        </article>
+        <article class="p-6 rounded-2xl border border-slate-100 shadow-soft">
+          <h3 class="font-semibold">Certificados & Actas</h3>
+          <p class="text-sm text-ink/70 mt-1">Nacimiento, matrimonio, antecedentes, certificaciones notariales y más.</p>
+        </article>
+        <article class="p-6 rounded-2xl border border-slate-100 shadow-soft">
+          <h3 class="font-semibold">Programas & PENSUM</h3>
+          <p class="text-sm text-ink/70 mt-1">Obtención de programas académicos / planes de estudio (si es necesario).</p>
+        </article>
+        <article class="p-6 rounded-2xl border border-slate-100 shadow-soft">
+          <h3 class="font-semibold">Seguimiento en línea</h3>
+          <p class="text-sm text-ink/70 mt-1">Estado del trámite y actualizaciones en tiempo real.</p>
+        </article>
+      </div>
+
+      <!-- destinos -->
+      <div class="mt-10">
+        <h3 class="text-lg font-semibold">Homologación Internacional</h3>
+        <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">🇪🇸 España</div>
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">🇫🇷 Francia</div>
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">🇮🇹 Italia</div>
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">🇺🇸 Estados Unidos</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nosotros -->
+  <section id="nosotros" class="py-16 md:py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="grid lg:grid-cols-2 gap-10 items-start">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Nuestra Historia</h2>
+          <p class="mt-3 text-ink/80 leading-relaxed">
+            Gopaper es un servicio de <b>Espinal, Almonte & Rich, Consultores Legales</b>, creado para simplificar y agilizar el acceso a documentos y
+            certificados oficiales dominicanos desde el extranjero. Escuchamos tus necesidades y ofrecemos soluciones a medida, con procesos ágiles,
+            seguros y sin contratiempos. Más de una década de experiencia nos respalda.
+          </p>
+          <ul class="mt-4 space-y-2 text-ink/80">
+            <li>• Atención personalizada y profesional.</li>
+            <li>• Integración de tecnología para seguimiento y seguridad.</li>
+            <li>• Alianzas estratégicas en la República Dominicana.</li>
+          </ul>
+        </div>
+        <div class="p-6 bg-white rounded-2xl border border-slate-100 shadow-soft">
+          <h3 class="font-semibold text-lg">¿Por qué elegirnos?</h3>
+          <div class="mt-3 grid sm:grid-cols-2 gap-3 text-sm text-ink/80">
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">Menos tiempos de espera</div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">Privacidad garantizada</div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">Asistencia en cada etapa</div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">Equipo con experiencia</div>
+          </div>
+          <a href="#contacto" class="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-500 text-white font-semibold hover:bg-brand-600">Comenzar ahora</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-16 md:py-20 bg-white">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6">
+      <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Preguntas Frecuentes</h2>
+      <div class="mt-6 space-y-3">
+        <!-- item -->
+        <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <summary class="flex cursor-pointer items-center justify-between">
+            <span class="font-semibold">¿Qué es Gopaper?</span>
+            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </summary>
+          <p class="mt-3 text-sm text-ink/80">Un servicio para dominicanos en el exterior que simplifica trámites legales y homologaciones con un proceso transparente y seguro.</p>
+        </details>
+
+        <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <summary class="flex cursor-pointer items-center justify-between">
+            <span class="font-semibold">¿Cuánto tarda un trámite?</span>
+            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </summary>
+          <ul class="mt-3 text-sm text-ink/80 space-y-1">
+            <li>• Rápidos: 3–7 días hábiles.</li>
+            <li>• Complejos: 10–20 días hábiles (según requisitos).</li>
+          </ul>
+        </details>
+
+        <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <summary class="flex cursor-pointer items-center justify-between">
+            <span class="font-semibold">¿Puedo solicitar para otra persona?</span>
+            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </summary>
+          <p class="mt-3 text-sm text-ink/80">Sí, con las autorizaciones legales necesarias (p. ej., poder notarial) y verificación de identidad.</p>
+        </details>
+
+        <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <summary class="flex cursor-pointer items-center justify-between">
+            <span class="font-semibold">¿Cómo garantizan la autenticidad?</span>
+            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </summary>
+          <p class="mt-3 text-sm text-ink/80">Los documentos se obtienen directamente de instituciones oficiales de la República Dominicana y se entregan con las debidas legalizaciones según el caso.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="py-16 md:py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="grid lg:grid-cols-2 gap-10">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Contáctanos</h2>
+          <ul class="mt-4 space-y-2 text-ink/80">
+            <li><b>Correo:</b> <a class="text-brand-700 hover:underline" href="mailto:info@gopaper.com.do">info@gopaper.com.do</a></li>
+            <li><b>Dirección:</b> Calle Arzobispo Portes No. 604, 2.º Piso, Ciudad Nueva, Santo Domingo de Guzmán, 10209, RD</li>
+            <li><b>Horario:</b> Lun–Vie 9:00 am–6:00 pm · Sáb 9:00 am–1:00 pm</li>
+          </ul>
+
+          <div class="mt-6 flex gap-3">
+            <a class="px-4 py-2 rounded-xl border border-slate-200 hover:border-slate-300 bg-white text-sm font-semibold" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="px-4 py-2 rounded-xl border border-slate-200 hover:border-slate-300 bg-white text-sm font-semibold" href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
+            <a class="px-4 py-2 rounded-xl border border-slate-200 hover:border-slate-300 bg-white text-sm font-semibold" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+
+        <form class="p-6 bg-white rounded-2xl border border-slate-100 shadow-soft" action="https://formspree.io/f/xbldryqy" method="POST">
+          <h3 class="font-semibold text-lg">Escríbenos</h3>
+          <div class="mt-4 grid sm:grid-cols-2 gap-4">
+            <input class="px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-300" name="nombre" placeholder="Nombre" required>
+            <input class="px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-300" type="email" name="email" placeholder="Correo" required>
+            <input class="px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-300 sm:col-span-2" name="pais" placeholder="País / Ciudad">
+            <textarea class="px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-300 sm:col-span-2" rows="5" name="mensaje" placeholder="Cuéntanos tu caso…"></textarea>
+          </div>
+          <button class="mt-4 px-5 py-3 rounded-2xl bg-ink text-white font-semibold hover:bg-ink/90">Enviar</button>
+          <p class="mt-2 text-xs text-ink/60">Al enviar aceptas nuestra política de privacidad.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-black/5 bg-slate-100">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-10">
+      <div class="grid md:grid-cols-3 gap-8 text-sm">
+        <div>
+          <div class="text-lg font-bold">GOPAPER</div>
+          <p class="mt-2 text-ink/70">Facilitamos los trámites legales y la obtención de documentación oficial para dominicanos en el extranjero.</p>
+          <a href="https://www.oficinaespinal.do" class="mt-3 inline-block text-brand-700 hover:underline">www.oficinaespinal.do</a>
+        </div>
+        <div>
+          <div class="font-semibold">Explora</div>
+          <ul class="mt-2 space-y-1">
+            <li><a class="hover:underline" href="#inicio">Inicio</a></li>
+            <li><a class="hover:underline" href="#servicios">Servicios</a></li>
+            <li><a class="hover:underline" href="#nosotros">Nosotros</a></li>
+            <li><a class="hover:underline" href="#faq">Preguntas Frecuentes</a></li>
+            <li><a class="hover:underline" href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="font-semibold">Información Legal</div>
+          <ul class="mt-2 space-y-1 text-ink/70">
+            <li>Política de Privacidad</li>
+            <li>Términos y Condiciones</li>
+            <li>Cumplimiento GDPR</li>
+            <li>© <span id="y"></span> Gopaper</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // año dinámico
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // mobile menu
+    const mobileBtn  = document.getElementById('mobileBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    document.querySelectorAll('.mnav').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.add('hidden')));
+
+    // enlaces base
+    document.querySelectorAll('.navlink').forEach(a=>{
+      a.className += ' text-sm text-ink/80 hover:text-ink font-medium';
+    });
+
+    // Overflow -> “Más” menú para desktop
+    const navList   = document.getElementById('navList');
+    const moreBtn   = document.getElementById('moreBtn');
+    const moreMenu  = document.getElementById('moreMenu');
+
+    function handleOverflow(){
+      if (!navList) return;
+      // reset: mover todo desde moreMenu a navList
+      [...moreMenu.querySelectorAll('a')].forEach(a=>{
+        const li = document.createElement('li'); li.appendChild(a); navList.appendChild(li);
+      });
+
+      moreBtn.classList.add('hidden');
+      moreMenu.classList.add('hidden');
+
+      const available = navList.parentElement.clientWidth - 120; // margen para botón
+      let total = 0;
+      const extras = [];
+
+      [...navList.children].forEach(li=>{
+        li.style.whiteSpace='nowrap';
+        total += li.getBoundingClientRect().width + 24; // gap
+        if (total > available) extras.push(li);
+      });
+
+      if (extras.length){
+        moreBtn.classList.remove('hidden');
+        extras.forEach(li=>{
+          const a = li.querySelector('a'); li.remove();
+          a.className = 'block px-3 py-2 hover:bg-slate-50';
+          moreMenu.appendChild(a);
+        });
+      }
+    }
+    window.addEventListener('load', handleOverflow);
+    window.addEventListener('resize', ()=>{ handleOverflow(); });
+
+    // abrir/cerrar menú Más
+    moreBtn?.addEventListener('click', ()=>{
+      moreMenu.classList.toggle('hidden');
+    });
+    document.addEventListener('click', (e)=>{
+      if (!moreMenu.contains(e.target) && !moreBtn.contains(e.target)){
+        moreMenu.classList.add('hidden');
+      }
+    });
+
+    // Scroll suave para todos los #hash
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+      });
+    });
+  </script>
+</body>
+</html>

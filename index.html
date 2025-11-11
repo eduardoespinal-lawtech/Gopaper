@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GOPAPER — Homologación y Trámites RD para Dominicanos en el Exterior</title>
-  <meta name="description" content="Homologación de estudios, apostillas, legalizaciones y obtención de documentos oficiales dominicanos con gestión segura y trazable." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>GOPAPER — Homologación & Trámites RD</title>
+  <meta name="description" content="Homologación de estudios, apostillas, legalizaciones y certificaciones oficiales de RD para dominicanos en el exterior." />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            brand: { 50:'#eef2ff',100:'#e0e7ff',200:'#c7d2fe',300:'#a5b4fc',400:'#818cf8',500:'#6366f1',600:'#4f46e5',700:'#4338ca',800:'#3730a3',900:'#312e81' },
+            brand: {50:'#fff7ed',100:'#ffedd5',200:'#fed7aa',300:'#fdba74',400:'#fb923c',500:'#f59e0b',600:'#d97706',700:'#b45309',800:'#92400e',900:'#78350f'},
             ink: { DEFAULT:'#0f172a', soft:'#334155' }
           },
           fontFamily: { sans: ['Inter','system-ui','ui-sans-serif','Segoe UI','Roboto','Helvetica','Arial'] },
@@ -24,25 +24,28 @@
     }
   </script>
   <style>
-    :root{ color-scheme: light dark; }
+    :root { color-scheme: light dark; }
     .glass { background: linear-gradient(180deg, rgba(255,255,255,.66), rgba(255,255,255,.34)); backdrop-filter: blur(8px); }
     .logo-dot { animation: pulse 2.4s infinite; }
     @keyframes pulse{ 0%,100%{opacity:.35; transform:scale(1)} 50%{opacity:1; transform:scale(1.12)}}
     details summary::-webkit-details-marker{display:none}
     details[open] .caret{transform:rotate(180deg)}
+    .sr-only-focusable:focus{position:static!important;width:auto;height:auto;margin:0;clip:auto;white-space:normal;outline:2px solid #f59e0b;padding:.25rem .5rem;border-radius:.5rem;background:#fff;}
   </style>
 </head>
 <body class="bg-slate-50 text-ink/90 antialiased selection:bg-brand-200 selection:text-ink">
-  <!-- Header -->
-  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-black/5">
+  <a href="#inicio" class="sr-only sr-only-focusable absolute left-2 top-2">Saltar al contenido</a>
+
+  <!-- Header accesible -->
+  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur border-b border-black/5" role="banner">
     <div class="mx-auto max-w-7xl px-4 sm:px-6">
       <div class="flex items-center justify-between h-16">
         <!-- Logo -->
-        <a href="#inicio" class="flex items-center gap-3 group">
+        <a href="#inicio" class="flex items-center gap-3" aria-label="Ir al inicio">
           <svg width="34" height="34" viewBox="0 0 44 44" class="text-ink/90" aria-hidden="true">
-            <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6366f1"/><stop offset="1" stop-color="#818cf8"/></linearGradient></defs>
+            <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f59e0b"/><stop offset="1" stop-color="#fb923c"/></linearGradient></defs>
             <rect x="2" y="2" width="40" height="40" rx="10" fill="url(#g)"/>
-            <circle class="logo-dot" cx="31" cy="13" r="3.2" fill="white" />
+            <circle class="logo-dot" cx="31" cy="13" r="3.2" fill="white"/>
           </svg>
           <div class="leading-tight">
             <span class="block text-lg font-extrabold tracking-tight">GOPAPER</span>
@@ -50,74 +53,81 @@
           </div>
         </a>
 
-        <!-- Nav -->
-        <nav class="relative">
-          <ul id="navList" class="hidden md:flex items-center gap-6 font-medium">
+        <!-- Menú desktop con overflow “Más” -->
+        <nav class="hidden md:block" aria-label="Principal">
+          <ul id="navList" class="flex items-center gap-6 font-medium">
             <li><a class="navlink" href="#inicio">Inicio</a></li>
             <li><a class="navlink" href="#servicios">Servicios</a></li>
             <li><a class="navlink" href="#nosotros">Nosotros</a></li>
             <li><a class="navlink" href="#faq">Preguntas</a></li>
             <li><a class="navlink" href="#contacto">Contacto</a></li>
           </ul>
-
-          <!-- Overflow “Más” -->
-          <div id="moreWrapper" class="relative hidden md:block">
-            <button id="moreBtn" class="hidden items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 hover:border-slate-300 bg-white text-sm">
-              Más
-              <svg class="w-4 h-4 opacity-70" viewBox="0 0 20 20" fill="currentColor"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+          <div class="relative inline-block">
+            <button id="moreBtn" class="hidden items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 bg-white text-sm"
+              aria-haspopup="true" aria-expanded="false" aria-controls="moreMenu">Más
+              <svg class="w-4 h-4 opacity-70" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
             </button>
-            <div id="moreMenu" class="absolute right-0 mt-2 w-52 rounded-xl border border-slate-200 bg-white shadow-soft hidden"></div>
-          </div>
-
-          <!-- Mobile -->
-          <button id="mobileBtn" class="md:hidden inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200">
-            <span class="text-sm font-medium">Menú</span>
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </button>
-          <div id="mobileMenu" class="md:hidden absolute right-4 left-4 top-16 rounded-2xl border border-slate-200 bg-white shadow-soft p-3 hidden">
-            <a class="mnav" href="#inicio">Inicio</a>
-            <a class="mnav" href="#servicios">Servicios</a>
-            <a class="mnav" href="#nosotros">Nosotros</a>
-            <a class="mnav" href="#faq">Preguntas</a>
-            <a class="mnav" href="#contacto">Contacto</a>
+            <div id="moreMenu" role="menu" aria-label="Más enlaces" class="absolute right-0 mt-2 w-48 rounded-xl border border-slate-200 bg-white shadow-soft hidden"></div>
           </div>
         </nav>
+
+        <!-- Menú móvil accesible (off-canvas) -->
+        <div class="md:hidden">
+          <button id="mobileBtn" class="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200"
+            aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
+            <span class="text-sm font-medium">Menú</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </button>
+        </div>
       </div>
     </div>
+
+    <!-- Panel móvil -->
+    <div id="mobileBackdrop" class="md:hidden fixed inset-0 bg-black/30 hidden" aria-hidden="true"></div>
+    <nav id="mobileMenu" class="md:hidden fixed top-0 right-0 bottom-0 w-72 max-w-[85%] translate-x-full transition-transform bg-white border-l border-slate-200 shadow-soft"
+         aria-label="Menú móvil" aria-hidden="true">
+      <div class="p-4 flex items-center justify-between border-b border-slate-200">
+        <span class="font-semibold">Navegación</span>
+        <button id="mobileClose" class="p-2 rounded-lg border border-slate-200" aria-label="Cerrar menú">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="p-3">
+        <a class="mnav block px-3 py-2 rounded-lg hover:bg-slate-50" href="#inicio">Inicio</a>
+        <a class="mnav block px-3 py-2 rounded-lg hover:bg-slate-50" href="#servicios">Servicios</a>
+        <a class="mnav block px-3 py-2 rounded-lg hover:bg-slate-50" href="#nosotros">Nosotros</a>
+        <a class="mnav block px-3 py-2 rounded-lg hover:bg-slate-50" href="#faq">Preguntas</a>
+        <a class="mnav block px-3 py-2 rounded-lg hover:bg-slate-50" href="#contacto">Contacto</a>
+      </div>
+    </nav>
   </header>
 
-  <!-- Hero -->
+  <!-- Hero (imagen de servicios) -->
   <section id="inicio" class="relative overflow-hidden">
     <div class="absolute inset-0">
-      <img alt="" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop" class="w-full h-full object-cover opacity-80">
+      <!-- usa tu archivo local de servicios para que refleje el caso -->
+      <img alt="Documentos, apostillas y homologación" src="./servicios.jpeg" class="w-full h-full object-cover opacity-80">
       <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/45 to-transparent"></div>
     </div>
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
       <div class="min-h-[70vh] md:min-h-[68vh] flex items-center">
         <div class="glass rounded-3xl p-6 md:p-10 max-w-3xl shadow-soft">
           <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-ink">
-            Homologación y <span class="text-brand-600">trámites oficiales</span> de República Dominicana
+            Homologación, apostillas y <span class="text-brand-600">traducciones oficiales</span> de RD
           </h1>
           <p class="mt-4 text-base md:text-lg text-ink/85">
-            Gestionamos <b>apostillas, legalizaciones, traducciones y certificaciones</b> para que tus títulos y documentos dominicanos sean válidos en el exterior.
+            Gestionamos títulos, récords de notas, actas y certificaciones con trazabilidad y entrega internacional.
           </p>
-
-          <!-- Badges de confianza -->
-          <div class="mt-5 flex flex-wrap gap-2">
-            <span class="px-3 py-1 text-xs rounded-full bg-white/80 border border-slate-200">+10 años de experiencia</span>
-            <span class="px-3 py-1 text-xs rounded-full bg-white/80 border border-slate-200">Cadena de custodia y trazabilidad</span>
-            <span class="px-3 py-1 text-xs rounded-full bg-white/80 border border-slate-200">Atención global ES/EN</span>
-          </div>
-
-          <!-- CTA botones (sin formulario) -->
           <div class="mt-6 flex flex-wrap items-center gap-3">
+            <!-- Botón correo sin mostrar dirección -->
             <a href="mailto:info@gopaper.com.do?subject=Consulta%20GOPAPER&body=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20homologaci%C3%B3n%20y%20tr%C3%A1mites."
-               class="px-5 py-3 rounded-2xl bg-ink text-white font-semibold hover:bg-ink/90">Escríbenos por correo</a>
-            <a href="https://wa.me/18294424222?text=Hola%20GOPAPER%2C%20necesito%20ayuda%20con%20homologaci%C3%B3n%20y%20tr%C3%A1mites%20desde%20el%20exterior."
+               class="px-5 py-3 rounded-2xl bg-ink text-white font-semibold hover:bg-ink/90">Escríbenos</a>
+            <!-- Botón WhatsApp sin número visible -->
+            <a href="https://wa.me/18294424222?text=Hola%20GOPAPER%2C%20necesito%20ayuda%20con%20homologaci%C3%B3n%20y%20tr%C3%A1mites."
                target="_blank" rel="noopener"
-               class="px-5 py-3 rounded-2xl bg-white border border-slate-200 font-semibold hover:border-slate-300">WhatsApp: 829 442 4222</a>
+               class="px-5 py-3 rounded-2xl bg-white border border-slate-200 font-semibold hover:border-slate-300">WhatsApp</a>
           </div>
-          <div class="mt-3 text-xs text-ink/60">Tiempo típico de respuesta: 24–48 h hábiles.</div>
+          <div class="mt-3 text-xs text-ink/60">Respuesta típica: 24–48 h hábiles.</div>
         </div>
       </div>
     </div>
@@ -129,126 +139,111 @@
       <div class="grid md:grid-cols-3 gap-6">
         <div class="p-6 bg-white rounded-2xl border border-slate-100 shadow-soft">
           <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 grid place-content-center mb-3">📄</div>
-          <h3 class="font-semibold text-lg">Homologación de Estudios</h3>
-          <p class="text-sm text-ink/70 mt-1">Acompañamos con requisitos por país (España, EE. UU., Italia, Francia). Gestionamos documentación de origen y entrega.</p>
+          <h3 class="font-semibold text-lg">Homologación de estudios</h3>
+          <p class="text-sm text-ink/70 mt-1">Requisitos por país (ES/UE/EE. UU.), verificación de origen y armado de expediente.</p>
         </div>
         <div class="p-6 bg-white rounded-2xl border border-slate-100 shadow-soft">
           <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 grid place-content-center mb-3">🛡️</div>
-          <h3 class="font-semibold text-lg">Apostillas & Legalizaciones</h3>
-          <p class="text-sm text-ink/70 mt-1">Vinculamos documentos al estándar requerido por cancillería y organismos competentes.</p>
+          <h3 class="font-semibold text-lg">Apostillas & legalizaciones</h3>
+          <p class="text-sm text-ink/70 mt-1">Validación de firmas, gestión ante cancillería y control de calidad.</p>
         </div>
         <div class="p-6 bg-white rounded-2xl border border-slate-100 shadow-soft">
           <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 grid place-content-center mb-3">🌐</div>
-          <h3 class="font-semibold text-lg">Traducción Oficial</h3>
-          <p class="text-sm text-ink/70 mt-1">Traducciones juradas por peritos habilitados cuando el país de destino lo exige.</p>
+          <h3 class="font-semibold text-lg">Traducciones oficiales</h3>
+          <p class="text-sm text-ink/70 mt-1">Peritos autorizados (EN/FR/IT) con sellos exigidos por el país de destino.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Servicios (Acordeón) -->
+  <!-- Servicios detallados (acordeón) -->
   <section id="servicios" class="py-16 md:py-20 bg-white">
     <div class="mx-auto max-w-5xl px-4 sm:px-6">
       <div class="md:flex items-end justify-between gap-6">
         <div>
-          <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Servicios Detallados</h2>
-          <p class="mt-2 text-ink/70 max-w-2xl">Despliega cada sección para ver el alcance, requisitos típicos y entregables.</p>
+          <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Servicios</h2>
+          <p class="mt-2 text-ink/70 max-w-2xl">Despliega para ver alcance, requisitos habituales y entregables.</p>
         </div>
-        <a href="#contacto" class="mt-4 md:mt-0 inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-200 hover:border-slate-300 bg-white text-sm font-semibold">Contactar →</a>
+        <a href="#contacto" class="mt-4 md:mt-0 inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-200 hover:border-slate-300 bg-white text-sm font-semibold">Contacto →</a>
       </div>
 
       <div class="mt-6 space-y-3">
+        <!-- 1 -->
         <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <summary class="flex cursor-pointer items-center justify-between">
-            <span class="font-semibold">1) Homologación Académica (ES/UE/EE. UU.)</span>
-            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <summary class="flex cursor-pointer items-center justify-between" aria-controls="d1" aria-expanded="false">
+            <span class="font-semibold">Homologación académica (ES/UE/EE. UU.)</span>
+            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </summary>
-          <div class="mt-3 text-sm text-ink/80 space-y-2">
-            <p><b>Alcance:</b> guía de requisitos por país, verificación de documentos de origen, preparación de expediente y seguimiento.</p>
+          <div id="d1" class="mt-3 text-sm text-ink/80 space-y-2">
+            <p><b>Alcance:</b> mapeo de requisitos por país, verificación de documentos de origen, armado y presentación del expediente.</p>
             <ul class="list-disc ml-5 space-y-1">
-              <li>Revisión de títulos, récords de notas y programas/pensum.</li>
-              <li>Coordinación de certificaciones universitarias y sellos oficiales.</li>
-              <li>Entrega digital y/o física según exigencias del destino.</li>
+              <li>Títulos, récords de notas y programas/pensum.</li>
+              <li>Certificaciones universitarias y sellos oficiales.</li>
+              <li>Cronograma y seguimiento por etapas.</li>
             </ul>
-            <p><b>Entregables:</b> checklist por país, cronograma estimado y comprobantes de gestión.</p>
+            <p><b>Entregables:</b> checklist, tiempos estimados y comprobantes de gestión.</p>
           </div>
         </details>
-
+        <!-- 2 -->
         <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <summary class="flex cursor-pointer items-center justify-between">
-            <span class="font-semibold">2) Apostilla y Legalización</span>
-            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <summary class="flex cursor-pointer items-center justify-between" aria-controls="d2" aria-expanded="false">
+            <span class="font-semibold">Apostilla y legalización</span>
+            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </summary>
-          <div class="mt-3 text-sm text-ink/80 space-y-2">
-            <p>Procesamos apostilla de La Haya y/o legalizaciones necesarias en RD.</p>
+          <div id="d2" class="mt-3 text-sm text-ink/80 space-y-2">
             <ul class="list-disc ml-5 space-y-1">
               <li>Validación de firmas y sellos previos.</li>
-              <li>Gestión ante cancillería u organismo competente.</li>
+              <li>Gestión ante cancillería u organismos competentes.</li>
               <li>Control de calidad y evidencia fotográfica.</li>
             </ul>
           </div>
         </details>
-
+        <!-- 3 -->
         <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <summary class="flex cursor-pointer items-center justify-between">
-            <span class="font-semibold">3) Traducciones Oficiales (Juradas)</span>
-            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <summary class="flex cursor-pointer items-center justify-between" aria-controls="d3" aria-expanded="false">
+            <span class="font-semibold">Traducciones oficiales (juradas)</span>
+            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </summary>
-          <div class="mt-3 text-sm text-ink/80 space-y-2">
-            <p>Inglés, francés e italiano con peritos autorizados.</p>
+          <div id="d3" class="mt-3 text-sm text-ink/80 space-y-2">
+            <p>Inglés, francés e italiano con peritos habilitados. Formato y sellos conforme a exigencias del país receptor.</p>
+          </div>
+        </details>
+        <!-- 4 -->
+        <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <summary class="flex cursor-pointer items-center justify-between" aria-controls="d4" aria-expanded="false">
+            <span class="font-semibold">Certificaciones y actas (JCE, MESCyT, MP, etc.)</span>
+            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </summary>
+          <div id="d4" class="mt-3 text-sm text-ink/80 space-y-2">
             <ul class="list-disc ml-5 space-y-1">
-              <li>Formato y sellos conforme a exigencias del país receptor.</li>
-              <li>Opciones urgentes y envío certificado.</li>
+              <li>Actas de nacimiento, matrimonio, certificaciones académicas y antecedentes.</li>
+              <li>Emisión, legalización y, si procede, apostilla y traducción.</li>
             </ul>
           </div>
         </details>
-
+        <!-- 5 -->
         <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <summary class="flex cursor-pointer items-center justify-between">
-            <span class="font-semibold">4) Certificaciones y Actas (JCE, MP, MESCyT, etc.)</span>
-            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <summary class="flex cursor-pointer items-center justify-between" aria-controls="d5" aria-expanded="false">
+            <span class="font-semibold">Programas/Pensum y constancias universitarias</span>
+            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </summary>
-          <div class="mt-3 text-sm text-ink/80 space-y-2">
+          <div id="d5" class="mt-3 text-sm text-ink/80 space-y-2">
+            <p>Obtención de programas de asignaturas, carga horaria y sellos institucionales para convalidaciones.</p>
+          </div>
+        </details>
+        <!-- 6 -->
+        <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <summary class="flex cursor-pointer items-center justify-between" aria-controls="d6" aria-expanded="false">
+            <span class="font-semibold">Trazabilidad, custodia y entrega</span>
+            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </summary>
+          <div id="d6" class="mt-3 text-sm text-ink/80 space-y-2">
             <ul class="list-disc ml-5 space-y-1">
-              <li>Actas (nacimiento, matrimonio, no. cédula), certificaciones académicas y antecedentes.</li>
-              <li>Emisión, legalización y, si aplica, apostilla/traducción.</li>
+              <li>Reportes por etapa y digitalización segura.</li>
+              <li>Envío nacional e internacional con comprobantes.</li>
             </ul>
           </div>
         </details>
-
-        <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <summary class="flex cursor-pointer items-center justify-between">
-            <span class="font-semibold">5) Programas/Pensum y Constancias Universitarias</span>
-            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </summary>
-          <div class="mt-3 text-sm text-ink/80 space-y-2">
-            <p>Obtención de programas de asignaturas, carga horaria y sellos institucionales.</p>
-          </div>
-        </details>
-
-        <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <summary class="flex cursor-pointer items-center justify-between">
-            <span class="font-semibold">6) Trazabilidad, Custodia y Entrega</span>
-            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </summary>
-          <div class="mt-3 text-sm text-ink/80 space-y-2">
-            <ul class="list-disc ml-5 space-y-1">
-              <li>Reporte de estado por etapas.</li>
-              <li>Digitalización segura y envío internacional.</li>
-            </ul>
-          </div>
-        </details>
-      </div>
-
-      <!-- destinos -->
-      <div class="mt-8">
-        <h3 class="text-lg font-semibold">Principales destinos</h3>
-        <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">🇪🇸 España</div>
-          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">🇫🇷 Francia</div>
-          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">🇮🇹 Italia</div>
-          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">🇺🇸 Estados Unidos</div>
-        </div>
       </div>
     </div>
   </section>
@@ -260,24 +255,17 @@
         <div>
           <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Quiénes somos</h2>
           <p class="mt-3 text-ink/80 leading-relaxed">
-            GOPAPER es un servicio de <b>Espinal, Almonte &amp; Rich, Consultores Legales</b>, creado para facilitar la obtención y validación de documentos oficiales dominicanos desde el extranjero con criterios de calidad, seguridad y tiempos predecibles.
+            GOPAPER es un servicio de <b>Espinal, Almonte &amp; Rich</b> para facilitar la obtención y validación de documentos oficiales dominicanos desde el extranjero con procesos estandarizados, seguridad y tiempos predecibles.
           </p>
           <ul class="mt-4 space-y-2 text-ink/80">
             <li>• Atención personalizada y acompañamiento integral.</li>
-            <li>• Red institucional en RD y procesos estandarizados.</li>
-            <li>• Comunicación clara con reportes de avance.</li>
+            <li>• Red institucional en RD y seguimiento transparente.</li>
+            <li>• Comunicación clara con hitos y evidencias.</li>
           </ul>
         </div>
-        <div class="p-6 bg-white rounded-2xl border border-slate-100 shadow-soft">
-          <h3 class="font-semibold text-lg">Por qué elegirnos</h3>
-          <div class="mt-3 grid sm:grid-cols-2 gap-3 text-sm text-ink/80">
-            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">Experiencia probada</div>
-            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">Privacidad y custodia</div>
-            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">Entrega internacional</div>
-            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">Soporte ES/EN</div>
-          </div>
-          <a href="#contacto" class="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-500 text-white font-semibold hover:bg-brand-600">Habla con nosotros</a>
-        </div>
+        <figure class="overflow-hidden rounded-2xl border border-slate-200 shadow-soft">
+          <img src="./nosotros.jpeg" alt="Equipo y gestión documental" class="w-full h-full object-cover">
+        </figure>
       </div>
     </div>
   </section>
@@ -290,46 +278,46 @@
         <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
           <summary class="flex cursor-pointer items-center justify-between">
             <span class="font-semibold">¿Qué documentos atienden?</span>
-            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </summary>
-          <p class="mt-3 text-sm text-ink/80">Títulos, récords de notas, programas/pensum, actas, antecedentes y certificaciones académicas/administrativas emitidas en RD.</p>
+          <p class="mt-3 text-sm text-ink/80">Títulos, récords de notas, programas/pensum, actas, antecedentes y certificaciones académicas/administrativas de RD.</p>
         </details>
-
         <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
           <summary class="flex cursor-pointer items-center justify-between">
-            <span class="font-semibold">¿Cuáles son los tiempos típicos?</span>
-            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span class="font-semibold">¿Tiempos de gestión?</span>
+            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </summary>
           <ul class="mt-3 text-sm text-ink/80 space-y-1">
-            <li>• Trámites simples: 3–7 días hábiles.</li>
-            <li>• Trámites complejos: 10–20 días hábiles (según exigencias).</li>
+            <li>• Simples: 3–7 días hábiles.</li>
+            <li>• Complejos: 10–20 días hábiles (según exigencias).</li>
           </ul>
         </details>
-
         <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
           <summary class="flex cursor-pointer items-center justify-between">
             <span class="font-semibold">¿Cómo protegen mis documentos?</span>
-            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.25 7.5 10 12.25 14.75 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </summary>
-          <p class="mt-3 text-sm text-ink/80">Control de custodia, validaciones por etapa y reportes de avance. Envíos asegurados y digitalización en repositorios privados.</p>
+          <p class="mt-3 text-sm text-ink/80">Custodia, validaciones por etapa, digitalización privada y envíos asegurados con comprobantes.</p>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- Contacto (solo botones) -->
+  <!-- Contacto directo (botones) -->
   <section id="contacto" class="py-16 md:py-20">
     <div class="mx-auto max-w-5xl px-4 sm:px-6 text-center">
-      <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Contacto directo</h2>
-      <p class="mt-2 text-ink/70">Elige el canal que prefieras. Respuesta en 24–48 h hábiles.</p>
+      <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Contacto</h2>
+      <p class="mt-2 text-ink/70">Elige el canal que prefieras.</p>
       <div class="mt-6 flex flex-wrap justify-center gap-3">
-        <a href="mailto:info@gopaper.com.do?subject=Consulta%20GOPAPER&body=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20homologaci%C3%B3n%2Ftr%C3%A1mites."
-           class="px-5 py-3 rounded-2xl bg-ink text-white font-semibold hover:bg-ink/90">Escríbenos a info@gopaper.com.do</a>
-        <a href="https://wa.me/18294424222?text=Hola%20GOPAPER%2C%20necesito%20ayuda%20con%20homologaci%C3%B3n%20y%20tr%C3%A1mites%20desde%20el%20exterior."
+        <a href="mailto:info@gopaper.com.do?subject=Consulta%20GOPAPER&body=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20homologaci%C3%B3n%20y%20tr%C3%A1mites."
+           class="px-5 py-3 rounded-2xl bg-ink text-white font-semibold hover:bg-ink/90" aria-label="Escribir por correo">Escríbenos</a>
+        <a href="https://wa.me/18294424222?text=Hola%20GOPAPER%2C%20necesito%20ayuda%20con%20homologaci%C3%B3n%20y%20tr%C3%A1mites."
            target="_blank" rel="noopener"
-           class="px-5 py-3 rounded-2xl bg-white border border-slate-200 font-semibold hover:border-slate-300">WhatsApp: 829 442 4222</a>
+           class="px-5 py-3 rounded-2xl bg-white border border-slate-200 font-semibold hover:border-slate-300" aria-label="Abrir WhatsApp">WhatsApp</a>
       </div>
-      <div class="mt-4 text-xs text-ink/60">Horario: Lun–Vie 9:00–18:00 (GMT-4) · Sáb 9:00–13:00</div>
+      <figure class="mt-8 overflow-hidden rounded-2xl border border-slate-200 shadow-soft">
+        <img src="./contacto.jpeg" alt="Entrega y seguimiento de documentos" class="w-full h-full object-cover">
+      </figure>
     </div>
   </section>
 
@@ -339,8 +327,7 @@
       <div class="grid md:grid-cols-3 gap-8 text-sm">
         <div>
           <div class="text-lg font-bold">GOPAPER</div>
-          <p class="mt-2 text-ink/70">Homologación y trámites oficiales dominicanos para quienes residen en el exterior.</p>
-          <a href="https://www.oficinaespinal.do" class="mt-3 inline-block text-brand-700 hover:underline">www.oficinaespinal.do</a>
+          <p class="mt-2 text-ink/70">Homologación y trámites oficiales dominicanos para residentes en el exterior.</p>
         </div>
         <div>
           <div class="font-semibold">Explora</div>
@@ -364,75 +351,92 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Scripts accesibilidad y menús -->
   <script>
     // año dinámico
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // mobile menu
-    const mobileBtn  = document.getElementById('mobileBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-    document.querySelectorAll('.mnav').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.add('hidden')));
-
-    // enlaces base
+    // estilos base links
     document.querySelectorAll('.navlink').forEach(a=>{
       a.className += ' text-sm text-ink/80 hover:text-ink font-medium';
     });
 
-    // Overflow -> “Más” menú para desktop
-    const navList   = document.getElementById('navList');
-    const moreBtn   = document.getElementById('moreBtn');
-    const moreMenu  = document.getElementById('moreMenu');
+    // Overflow -> “Más” para desktop
+    const navList = document.getElementById('navList');
+    const moreBtn = document.getElementById('moreBtn');
+    const moreMenu = document.getElementById('moreMenu');
 
     function handleOverflow(){
-      if (!navList) return;
-      // reset: mover todo desde moreMenu a navList
+      if(!navList) return;
+      // reset
       [...moreMenu.querySelectorAll('a')].forEach(a=>{
         const li = document.createElement('li'); li.appendChild(a); navList.appendChild(li);
       });
+      moreBtn.classList.add('hidden'); moreMenu.classList.add('hidden');
+      moreBtn.setAttribute('aria-expanded','false');
 
-      moreBtn.classList.add('hidden');
-      moreMenu.classList.add('hidden');
-
-      const available = navList.parentElement.clientWidth - 120; // margen para botón
-      let total = 0;
-      const extras = [];
-
+      const available = navList.parentElement.clientWidth - 120;
+      let total = 0; const extras = [];
       [...navList.children].forEach(li=>{
         li.style.whiteSpace='nowrap';
-        total += li.getBoundingClientRect().width + 24; // gap
-        if (total > available) extras.push(li);
+        total += li.getBoundingClientRect().width + 24;
+        if(total > available) extras.push(li);
       });
-
-      if (extras.length){
+      if(extras.length){
         moreBtn.classList.remove('hidden');
         extras.forEach(li=>{
           const a = li.querySelector('a'); li.remove();
           a.className = 'block px-3 py-2 hover:bg-slate-50';
+          a.setAttribute('role','menuitem');
           moreMenu.appendChild(a);
         });
       }
     }
     window.addEventListener('load', handleOverflow);
-    window.addEventListener('resize', ()=>{ handleOverflow(); });
-
-    // abrir/cerrar menú Más
+    window.addEventListener('resize', handleOverflow);
     moreBtn?.addEventListener('click', ()=>{
-      moreMenu.classList.toggle('hidden');
+      const open = moreMenu.classList.toggle('hidden');
+      moreBtn.setAttribute('aria-expanded', String(!open));
+      if(!open) moreMenu.querySelector('a')?.focus();
     });
     document.addEventListener('click', (e)=>{
-      if (!moreMenu.contains(e.target) && !moreBtn.contains(e.target)){
-        moreMenu.classList.add('hidden');
+      if(moreMenu && !moreMenu.contains(e.target) && !moreBtn.contains(e.target)){
+        moreMenu.classList.add('hidden'); moreBtn.setAttribute('aria-expanded','false');
       }
     });
 
-    // Scroll suave para #hash
+    // Menú móvil accesible
+    const mobileBtn = document.getElementById('mobileBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+    const mobileBackdrop = document.getElementById('mobileBackdrop');
+
+    function openMobile(){
+      mobileMenu.style.transform = 'translateX(0)';
+      mobileMenu.setAttribute('aria-hidden','false');
+      mobileBtn.setAttribute('aria-expanded','true');
+      mobileBackdrop.classList.remove('hidden');
+      mobileMenu.querySelector('a')?.focus();
+    }
+    function closeMobile(){
+      mobileMenu.style.transform = 'translateX(100%)';
+      mobileMenu.setAttribute('aria-hidden','true');
+      mobileBtn.setAttribute('aria-expanded','false');
+      mobileBackdrop.classList.add('hidden');
+      mobileBtn.focus();
+    }
+    mobileBtn?.addEventListener('click', openMobile);
+    mobileClose?.addEventListener('click', closeMobile);
+    mobileBackdrop?.addEventListener('click', closeMobile);
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMobile(); });
+    document.querySelectorAll('.mnav').forEach(a=>a.addEventListener('click', closeMobile));
+
+    // Scroll suave
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', e=>{
         const id = a.getAttribute('href').slice(1);
         const el = document.getElementById(id);
-        if (el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
       });
     });
   </script>

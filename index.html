@@ -43,7 +43,15 @@
     .mitem{display:block;padding:.75rem 0;border-bottom:1px solid #f1f5f9}
 
     /* ===== FIX menú móvil (toggle robusto + opaco + tope z) ===== */
-    #menuPanel.is-open{opacity:1;visibility:visible}
+    #menuPanel {
+      transform: translateX(100%);
+      transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+    #menuPanel.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
   </style>
 </head>
 <body class="bg-slate-50 text-ink/90 antialiased selection:bg-brand-200 selection:text-ink">

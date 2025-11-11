@@ -42,8 +42,8 @@
     .ulink:hover::after,.ulink:focus-visible::after{transform:scaleX(1)}
     .mitem{display:block;padding:.75rem 0;border-bottom:1px solid #f1f5f9}
 
-    /* ===== FIX menú móvil (toggle robusto) ===== */
-    #menuPanel{transform:translateY(100%);opacity:0;pointer-events:none}
+    /* ===== FIX menú móvil (toggle robusto + opaco) ===== */
+    #menuPanel{transform:translateY(100%);opacity:0;pointer-events:none;background:#ffffff;}
     #menuPanel.is-open{transform:translateY(0);opacity:1;pointer-events:auto}
   </style>
 </head>
@@ -85,8 +85,8 @@
       </div>
     </div>
 
-    <!-- Panel móvil full-height -->
-    <div id="menuPanel" class="md:hidden fixed inset-0 bg-white translate-y-full transition-transform duration-300 ease-out" aria-label="Menú móvil" aria-hidden="true">
+    <!-- Panel móvil full-height (opaco + sobre el header) -->
+    <div id="menuPanel" class="md:hidden fixed inset-0 z-[60] bg-white translate-y-full transition-transform duration-300 ease-out shadow-xl" aria-label="Menú móvil" aria-hidden="true">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between border-b border-slate-200">
         <span class="font-semibold">Navegación</span>
         <button id="menuClose" class="p-2 rounded-lg border border-slate-200" aria-label="Cerrar menú">
@@ -106,7 +106,6 @@
   <!-- ===== Hero (igual) ===== -->
   <section id="inicio" class="relative overflow-hidden pt-16">
     <div class="absolute inset-0">
-      <!-- Fondo conceptual elegante (abstracto, legal-tech) -->
       <img alt="Fondo conceptual profesional" src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1920&auto=format&fit=crop"
            class="w-full h-full object-cover opacity-80">
       <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/45 to-transparent"></div>
@@ -291,7 +290,7 @@
           <summary class="flex cursor-pointer items-center justify-between"><span class="font-semibold">4) ¿Qué países cubren para homologación?</span><svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none"><path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
           <p class="mt-3 text-sm text-ink/80">España, Estados Unidos, Italia y Francia como base. Consultar otros destinos.</p>
         </details>
-        <details class="group rounded-2xl border border-slate-2 00 bg-slate-50 p-4">
+        <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-4">
           <summary class="flex cursor-pointer items-center justify-between"><span class="font-semibold">5) ¿Cómo protegen mis datos y documentos?</span><svg class="caret w-4 h-4 transition-transform opacity-70" viewBox="0 0 20 20" fill="none"><path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
           <p class="mt-3 text-sm text-ink/80">Custodia por etapas, digitalización privada, envío asegurado y trazabilidad con comprobantes.</p>
         </details>
@@ -368,12 +367,12 @@
     </div>
   </footer>
 
-  <!-- ===== Scripts (solo menú móvil + auto-hide) ===== -->
+  <!-- ===== Scripts (menú móvil + auto-hide) ===== -->
   <script>
     // año dinámico
     const yEl=document.getElementById('y'); if(yEl) yEl.textContent = new Date().getFullYear();
 
-    // Scroll suave (igual)
+    // Scroll suave
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', e=>{
         const id = a.getAttribute('href').slice(1);
@@ -382,7 +381,7 @@
       });
     });
 
-    // Menú móvil (fix robusto)
+    // Menú móvil (fix robusto + bloqueo de scroll)
     const menuBtn=document.getElementById('menuBtn');
     const menuPanel=document.getElementById('menuPanel');
     const menuClose=document.getElementById('menuClose');
@@ -405,7 +404,7 @@
     menuPanel?.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
     document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeMenu(); });
 
-    // Auto-ocultar header al bajar / mostrar al subir (igual)
+    // Auto-ocultar header al bajar / mostrar al subir
     let lastY = 0; const header = document.getElementById('header');
     window.addEventListener('scroll', ()=>{
       const y = window.scrollY;
